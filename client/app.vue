@@ -2,8 +2,16 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <todo></todo>
+    <router-link to="/app">app</router-link>
+    <!-- <router-link :to="{name: 'app'}">app</router-link> -->
+    <router-link to="/login">login</router-link>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
     <Footer></Footer>
+    <router-view name="a"></router-view>
+
+
   </div>
 </template>
 
@@ -28,6 +36,9 @@ export default {
   right 0
   top 0
   bottom 0
+}
+.active-link{
+  color white
 }
 #cover{
   position absolute
