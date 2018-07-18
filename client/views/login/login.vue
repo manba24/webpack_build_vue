@@ -6,7 +6,10 @@
 
 <script>
 export default {
-
+  mounted () {
+    console.log(this.id)
+  },
+  props: ['id']
 }
 </script>
 

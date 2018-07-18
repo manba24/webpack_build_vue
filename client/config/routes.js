@@ -1,5 +1,5 @@
 import Todo from '../views/todo/todo.vue'
-import Login from '../views/login/login.vue'
+// import Login from '../views/login/login.vue'
 export default [
   {
     path: '/',
@@ -7,18 +7,26 @@ export default [
   },
   {
     // path: '/app/:id',
-    path: '/app',
+    path: '/app/:id',
+    props: {
+      default: true,
+      login: true
+    },
     // props可定制..可以是一个函数
     // props:(route)=> ({id: route.query.b})
-    props: true,
     components: {
       default: Todo,
-      a: Login
+      // 异步路由，加快首屏加载
+      login: () => import('../views/login/login.vue')
     },
     name: 'app',
     meta: {
       title: 'this is app'
     }
+    // beforeEnter (to, from, next) {
+    //   console.log('app router before enter')
+    //   next()
+    // }
     // children: [
     //   {
     //     path: 'test',
@@ -28,10 +36,10 @@ export default [
   },
   {
     path: '/login',
-    component: Login
+    component: () => import('../views/login/login.vue')
   },
   {
     path: '/login/exact',
-    component: Login
+    component: () => import('../views/login/login.vue')
   }
 ]

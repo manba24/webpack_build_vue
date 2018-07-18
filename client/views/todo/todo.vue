@@ -28,13 +28,29 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id = 0
 export default {
-  // props: ['id'],
-  // mounted () {
-  //   console.log(this.id)
-  // },
 
+  beforeRouteEnter (to, from, next) {
+    console.log('todo before enter1')
+    next(vm => {
+      console.log('after enter this.id is', vm.id)
+    })
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('todo before updated2')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    if (global.confirm('are you sure')) {
+      console.log('todo before leave3')
+      next()
+    }
+  },
   mounted () {
-    console.log(this.$route)
+    console.log('to mounted')
+  },
+  props: ['id'],
+  created () {
+    console.log(this.id)
   },
   data () {
     return {
