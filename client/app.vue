@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {mapState, mapGetters} from 'vuex'
+import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 // import Todo from './views/todo/todo.vue'
@@ -31,10 +31,18 @@ export default {
   },
   mounted () {
     console.log(this.$store)
+    // this.updateCountAsync({
+    //   num: 5,
+    //   time: 2000
+    // })
     let i = 1
     setInterval(() => {
-      this.$store.commit('updateCount', i++)
+      this.updateCount(i++)
     }, 1000)
+  },
+  methods: {
+    ...mapActions(['updateCountAsync']),
+    ...mapMutations(['updateCount'])
   },
   computed: {
     // ...mapState(['count']),
