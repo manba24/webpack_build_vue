@@ -35,25 +35,35 @@ export default {
     //   num: 5,
     //   time: 2000
     // })
-    let i = 1
-    setInterval(() => {
-      this.updateCount(i++)
-    }, 1000)
+    // let i = 1
+    // setInterval(() => {
+    //   this.updateCount(i++)
+    // }, 1000)
+
+    // this['a/add']()
   },
   methods: {
-    ...mapActions(['updateCountAsync']),
-    ...mapMutations(['updateCount'])
+    ...mapActions(['updateCountAsync', 'a/add']),
+    ...mapMutations(['updateCount', 'a/updateText'])
   },
   computed: {
+    // textA () {
+    //   return this.$store.state.a.text
+    // },
     // ...mapState(['count']),
     ...mapState({
       // counter: 'count'
-      counter: (state) => state.count
+      counter: (state) => state.count,
+      textA: state => state.a.text
     }),
     // count () {
     //   return this.$store.state.count
     // },
-    ...mapGetters(['fullName'])
+    ...mapGetters({
+      fullName: 'fullName',
+      textPlus: 'a/textPlus'
+
+    })
     // fullName () {
     //   return this.$store.getters.fullName
     // }
