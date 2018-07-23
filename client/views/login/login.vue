@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: 'login page'
+  },
   mounted () {
     console.log(this.id)
   },
