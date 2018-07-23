@@ -31,10 +31,10 @@ export default {
   },
   mounted () {
     console.log(this.$store)
-    // this.updateCountAsync({
-    //   num: 5,
-    //   time: 2000
-    // })
+    this.updateCountAsync({
+      num: 5,
+      time: 2000
+    })
     // let i = 1
     // setInterval(() => {
     //   this.updateCount(i++)

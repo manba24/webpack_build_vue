@@ -18,6 +18,20 @@ store.registerModule('c', {
     text: 'test textC'
   }
 })
+
+// store.watch((state) => state.count + 1, (newCount) => {
+//   console.log(newCount, 'newCount')
+// })
+
+// store.subscribe((mutation, state) => {
+//   console.log(mutation.type)
+//   console.log(mutation.payload)
+// })
+
+store.subscribeAction((action, state) => {
+  console.log(action.type)
+  console.log(action.payload)
+})
 // router.beforeEach((to, from, next) => {
 //   console.log('before each invoked')
 //   next()
