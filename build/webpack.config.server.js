@@ -9,7 +9,7 @@ let config
 
 config = merge(baseConfig, {
   target: 'node',
-  entry: path.join(__dirname, '../clinet/server-entry.js'),
+  entry: path.join(__dirname, '../client/server-entry.js'),
   devtool: 'source-map',
   output: {
     libraryTarget: 'commonjs2',

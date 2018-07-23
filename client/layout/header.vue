@@ -9,7 +9,7 @@ export default {
   computed: {
     $style () {
       return {
-        mainHeader: ''
+        mainHeader: '.main-header'
       }
     }
   }

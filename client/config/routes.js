@@ -7,7 +7,7 @@ export default [
   },
   {
     // path: '/app/:id',
-    path: '/app/:id',
+    path: '/app',
     props: {
       default: true,
       login: true
