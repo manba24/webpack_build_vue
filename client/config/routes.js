@@ -14,11 +14,12 @@ export default [
     },
     // props可定制..可以是一个函数
     // props:(route)=> ({id: route.query.b})
-    components: {
-      default: Todo,
-      // 异步路由，加快首屏加载
-      login: () => import('../views/login/login.vue')
-    },
+    component: Todo,
+    // components: {
+    //   default: Todo,
+    //   // 异步路由，加快首屏加载
+    //   login: () => import('../views/login/login.vue')
+    // },
     name: 'app',
     meta: {
       title: 'this is app'

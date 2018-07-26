@@ -5,12 +5,13 @@ import Vuex from 'vuex'
 import App from './app.vue'
 import createStore from './store/store'
 import createRouter from './config/router'
-
+import Notification from './components/notification'
 import './assets/styles/global.styl'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Meta)
+Vue.use(Notification)
 
 export default () => {
   const router = createRouter()
