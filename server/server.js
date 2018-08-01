@@ -1,8 +1,22 @@
 const Koa = require('koa')
 const send = require('koa-send')
 const path = require('path')
-const app = new Koa()
+const koaBody = require('koa-body')
+const koaSession = require('koa-session')
 const staicRouter = require('./routers/static')
+const apiRouter = require('./routers/api')
+const userRouter = require('./routers/user')
+const createDb = require('./db/db')
+const config = require('../app.config')
+const db = createDb(config.db.appId, config.db.appKey)
+
+const app = new Koa()
+app.keys = ['vue ssr tech']
+app.use(koaSession({
+  key: 'vue-ssr-id',
+  maxAge: 2 * 60 * 60 * 1000
+}, app))
+
 const isDev = process.env.NODE_ENV === 'development'
 
 app.use(async (ctx, next) => {
@@ -26,8 +40,15 @@ app.use(async (ctx, next) => {
     await next()
   }
 })
-
+app.use(async (ctx, next) => {
+  ctx.db = db
+  await next()
+})
+app.use(koaBody())
+app.use(userRouter.routes()).use(userRouter.allowedMethods())
 app.use(staicRouter.routes()).use(staicRouter.allowedMethods())
+app.use(apiRouter.routes()).use(apiRouter.allowedMethods())
+
 let pageRouter
 if (isDev) {
   pageRouter = require('./routers/dev-ssr')
