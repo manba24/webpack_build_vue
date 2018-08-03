@@ -27,7 +27,7 @@ apiRouter
     ctx.body = successResponse(data)
   })
   .put('/todo/:id', async (ctx) => {
-    const data = await ctx.db.updataTodo(ctx.params.id, ctx.request.body)
+    const data = await ctx.db.updateTodo(ctx.params.id, ctx.request.body)
     ctx.body = successResponse(data)
   })
   .delete('/todo/:id', async (ctx) => {

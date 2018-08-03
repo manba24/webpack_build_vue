@@ -1,19 +1,20 @@
 <template>
   <div id="app">
     <div id="cover"></div>
+    <div id="loading" v-show="loading">
+      <loading></loading>
+    </div>
     <Header></Header>
-    <p>{{fullName}} {{counter}}</p>
+    <!-- <p>{{fullName}} {{counter}}</p> -->
     <!-- <router-link to="/app/123">app123</router-link>
     <router-link to="/app/456">app456</router-link>
     <router-link to="/app">app</router-link> -->
     <!-- <router-link :to="{name: 'app'}">app</router-link> -->
-    <router-link to="/login">login</router-link>
-  
-
-    <transition name="fade">
+    <!-- <router-link to="/login">login</router-link> -->
+    <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
-    <button @click="notify">click me</button>
+    <!-- <button @click="notify">click me</button> -->
     <!-- <notification content="test notifiy"></notification> -->
     <Footer></Footer>
 
@@ -25,6 +26,7 @@
 import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
+import Loading from './components/loading/loading.vue'
 // import Todo from './views/todo/todo.vue'
 
 export default {
@@ -33,7 +35,8 @@ export default {
   },
   components: {
     Header,
-    Footer
+    Footer,
+    Loading
   },
   mounted () {
     // this.$notify({
@@ -63,18 +66,7 @@ export default {
     }
   },
   computed: {
-    // textA () {
-    //   return this.$store.state.a.text
-    // },
-    // ...mapState(['count']),
-    ...mapState({
-      // counter: 'count'
-      counter: (state) => state.count,
-      textA: state => state.a.text
-    }),
-    // count () {
-    //   return this.$store.state.count
-    // },
+    ...mapState(['loading']),
     ...mapGetters({
       fullName: 'fullName',
       textPlus: 'a/textPlus'
@@ -107,6 +99,18 @@ export default {
   background-color #999
   opacity .9
   z-index -1
+}
+#loading {
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  background-color rgba(255,255,255,.3)
+  z-index 99
+  display flex
+  align-items center
+  justify-content center
 }
 </style>
 

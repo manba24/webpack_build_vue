@@ -43,7 +43,7 @@ module.exports = (appId, appKey) => {
         }
       ))
     },
-    async updataTodo (id, todo) {
+    async updateTodo (id, todo) {
       return handleRequest(await request.put(
         `/${className}/${id}`,
         todo,
